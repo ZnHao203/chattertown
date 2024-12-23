@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://w472mpqgsud7"]
+
+[ext_resource type="Texture2D" uid="uid://r5v30ksork6b" path="res://assets/3_town_map.png" id="1_cmlr0"]
+[ext_resource type="Script" path="res://map/toTown.cs" id="2_spf87"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scmnx"]
+size = Vector2(138, 113)
+
+[node name="map" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581, 335)
+scale = Vector2(0.615639, 0.562814)
+texture = ExtResource("1_cmlr0")
+
+[node name="toTown" type="Area2D" parent="."]
+script = ExtResource("2_spf87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toTown"]
+position = Vector2(495, 112)
+shape = SubResource("RectangleShape2D_scmnx")
+
+[connection signal="input_event" from="toTown" to="toTown" method="_on_input_event"]
