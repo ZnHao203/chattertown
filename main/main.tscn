@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4bjk5ngn57h"]
+[gd_scene load_steps=7 format=3 uid="uid://c4bjk5ngn57h"]
 
 [ext_resource type="Texture2D" uid="uid://bhfd76wd6iulw" path="res://assets/1_neighborhood.png" id="1_lyh6e"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://main/player.tscn" id="1_qgybj"]
 [ext_resource type="Script" path="res://main/House.cs" id="3_tgcur"]
+[ext_resource type="Script" path="res://main/TestGameManager.cs" id="3_xe8eb"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_gxbqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2kol"]
 size = Vector2(192, 163)
@@ -21,11 +23,16 @@ scale = Vector2(3, 3)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(200, -120)
 
+[node name="TestGameManager" type="Node" parent="Player"]
+script = ExtResource("3_xe8eb")
+
 [node name="House" type="Area2D" parent="."]
 script = ExtResource("3_tgcur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
 position = Vector2(263, 248.5)
 shape = SubResource("RectangleShape2D_q2kol")
+
+[node name="timeEnergy" parent="." instance=ExtResource("5_gxbqi")]
 
 [connection signal="input_event" from="House" to="House" method="_on_input_event"]
