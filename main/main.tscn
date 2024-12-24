@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4bjk5ngn57h"]
+[gd_scene load_steps=9 format=3 uid="uid://c4bjk5ngn57h"]
 
 [ext_resource type="Texture2D" uid="uid://bhfd76wd6iulw" path="res://assets/1_neighborhood.png" id="1_lyh6e"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://main/player.tscn" id="1_qgybj"]
 [ext_resource type="Script" path="res://main/House.cs" id="3_tgcur"]
 [ext_resource type="Script" path="res://main/TestGameManager.cs" id="3_xe8eb"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_gxbqi"]
+[ext_resource type="PackedScene" uid="uid://cnboxyda30gxv" path="res://character/Alex.tscn" id="6_tyl4e"]
+[ext_resource type="PackedScene" uid="uid://ri483juss6q2" path="res://character/betty.tscn" id="7_rl7ip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2kol"]
 size = Vector2(192, 163)
@@ -16,15 +18,24 @@ position = Vector2(1161, 335)
 scale = Vector2(0.980508, 0.915761)
 texture = ExtResource("1_lyh6e")
 
-[node name="Player" parent="." instance=ExtResource("1_qgybj")]
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("1_qgybj")]
 position = Vector2(173, 458)
 scale = Vector2(3, 3)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 offset = Vector2(200, -120)
 
-[node name="TestGameManager" type="Node" parent="Player"]
+[node name="TestGameManager" type="Node" parent="YSort/Player"]
 script = ExtResource("3_xe8eb")
+
+[node name="Alex" parent="YSort" instance=ExtResource("6_tyl4e")]
+position = Vector2(551, 359)
+
+[node name="Betty" parent="YSort" instance=ExtResource("7_rl7ip")]
+position = Vector2(740, 365)
 
 [node name="House" type="Area2D" parent="."]
 script = ExtResource("3_tgcur")
