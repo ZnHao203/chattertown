@@ -14,7 +14,7 @@ public partial class TestGameManager : Node
 		var timer = GetTree().CreateTimer(1.0);
 		timer.Timeout += () =>
 		{
-			GameManager.Instance.UseEnergy(20);
+			// GameManager.Instance.UseEnergy(20);
 		};
 	}
 

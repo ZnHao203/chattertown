@@ -4,7 +4,7 @@ using System;
 public partial class House : Area2D
 {
 	[Export]
-	private string HomeInteriorPath = "res://home/home.tscn";
+	private string HomeInteriorPath = "res://scenes/home/home.tscn";
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

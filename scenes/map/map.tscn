@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://w472mpqgsud7"]
 
 [ext_resource type="Texture2D" uid="uid://r5v30ksork6b" path="res://assets/3_town_map.png" id="1_cmlr0"]
-[ext_resource type="Script" path="res://map/toTown.cs" id="2_spf87"]
+[ext_resource type="Script" path="res://scenes/map/toTown.cs" id="2_spf87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scmnx"]
 size = Vector2(138, 113)

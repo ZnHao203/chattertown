@@ -4,7 +4,7 @@ using System;
 public partial class toTown : Area2D
 {
 	[Export]
-	private string TownScenePath = "res://main/main.tscn";
+	private string TownScenePath = "res://scenes/main/main.tscn";
 	
 	// Optional: Store the position where the player should spawn outside
 	[Export]

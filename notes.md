@@ -12,3 +12,4 @@ have a chatbox on the side for all the dialogues
 
 characters change locations (but within range) on different days
 
+~~Bugfix: press ctrl m, energy -20?~~

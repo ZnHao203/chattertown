@@ -26,7 +26,7 @@ A social game built with Godot 4 and C#.
 
 ### Navigation
 - **Left Click** - Interact with buildings and objects
-- **Ctrl + M** - Open/Close Map
+- **M** - Open/Close Map
 - **ESC** - Exit current building/Return to previous scene
 
 ### Scene Transitions

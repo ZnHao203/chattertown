@@ -4,7 +4,7 @@ using System;
 public partial class GlobalInput : Node
 {
 	[Export]
-	private string MapScenePath = "res://map/map.tscn";
+	private string MapScenePath = "res://scenes/map/map.tscn";
 	
 	// Store the previous scene path to return to
 	private string PreviousScenePath;

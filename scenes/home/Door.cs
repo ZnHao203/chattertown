@@ -4,7 +4,7 @@ using System;
 public partial class Door : Area2D
 {
 	[Export]
-	private string OutsideScenePath = "res://main/main.tscn";
+	private string OutsideScenePath = "res://scenes/main/main.tscn";
 	
 	// Optional: Store the position where the player should spawn outside
 	[Export]
