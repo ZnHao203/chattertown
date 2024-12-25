@@ -16,5 +16,6 @@ public partial class Betty : Character
 		// Pick random dialogue line
 		var randomLine = _dialogLines[new Random().Next(_dialogLines.Length)];
 		GD.Print($"{CharacterName}: {randomLine}");
+		GameManager.Instance.DisplayDialogue(CharacterName, randomLine);
 	}
 }

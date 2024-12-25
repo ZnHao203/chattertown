@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4bjk5ngn57h"]
+[gd_scene load_steps=10 format=3 uid="uid://c4bjk5ngn57h"]
 
 [ext_resource type="Texture2D" uid="uid://bhfd76wd6iulw" path="res://assets/1_neighborhood.png" id="1_lyh6e"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="1_qgybj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_gxbqi"]
 [ext_resource type="PackedScene" uid="uid://cnboxyda30gxv" path="res://character/npcs/Alex.tscn" id="6_tyl4e"]
 [ext_resource type="PackedScene" uid="uid://ri483juss6q2" path="res://character/npcs/betty.tscn" id="7_rl7ip"]
+[ext_resource type="PackedScene" uid="uid://cf0cky1fm163b" path="res://globalCtrl/ChatBox.tscn" id="8_06t4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2kol"]
 size = Vector2(192, 163)
@@ -45,5 +46,11 @@ position = Vector2(263, 248.5)
 shape = SubResource("RectangleShape2D_q2kol")
 
 [node name="timeEnergy" parent="." instance=ExtResource("5_gxbqi")]
+
+[node name="ChatBox" parent="." instance=ExtResource("8_06t4w")]
+offset_left = 807.0
+offset_top = 22.0
+offset_right = 1207.0
+offset_bottom = 672.0
 
 [connection signal="input_event" from="House" to="House" method="_on_input_event"]
