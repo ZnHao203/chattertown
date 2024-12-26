@@ -21,6 +21,10 @@ GlobalInput="*res://globalCtrl/GlobalInput.cs"
 ChatBox="*res://globalCtrl/ChatBox.tscn"
 GameManager="*res://globalCtrl/GameManager.cs"
 
+[display]
+
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="chattertown"

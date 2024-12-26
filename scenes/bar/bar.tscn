@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm2f4016c7oy4"]
+
+[ext_resource type="Texture2D" uid="uid://f6l6cdlfih23" path="res://assets/7_bar.png" id="1_ot1di"]
+[ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_g3g7p"]
+[ext_resource type="Script" path="res://scenes/bar/BarDoor.cs" id="3_a1iad"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="3_p7v2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p35j"]
+size = Vector2(206, 647)
+
+[node name="bar" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(1529, 343)
+scale = Vector2(1.37201, 1.64758)
+texture = ExtResource("1_ot1di")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("2_g3g7p")]
+position = Vector2(95, 504)
+scale = Vector2(4, 4)
+
+[node name="CameraController" type="Camera2D" parent="YSort/Player"]
+offset = Vector2(200, -160)
+
+[node name="BarDoor" type="Area2D" parent="."]
+script = ExtResource("3_a1iad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarDoor"]
+position = Vector2(-174, 343.5)
+shape = SubResource("RectangleShape2D_4p35j")
+
+[node name="timeEnergy" parent="." instance=ExtResource("3_p7v2n")]
+
+[connection signal="input_event" from="BarDoor" to="BarDoor" method="_on_bar_door_input_event"]

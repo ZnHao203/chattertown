@@ -9,14 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://ri483juss6q2" path="res://character/npcs/betty.tscn" id="7_rl7ip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2kol"]
-size = Vector2(192, 163)
+size = Vector2(318, 261)
 
 [node name="Main" type="Node"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(1161, 335)
-scale = Vector2(0.980508, 0.915761)
+position = Vector2(3180, 330)
+scale = Vector2(2.553, 2.3)
 texture = ExtResource("1_lyh6e")
+region_rect = Rect2(-3180, 0, 7300, 600)
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -25,8 +26,13 @@ y_sort_enabled = true
 position = Vector2(173, 458)
 scale = Vector2(3, 3)
 
-[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+[node name="CameraController" type="Camera2D" parent="YSort/Player"]
 offset = Vector2(200, -120)
+limit_left = -10000
+limit_top = -1000
+limit_right = 10000
+limit_bottom = 1000
+limit_smoothed = true
 
 [node name="TestGameManager" type="Node" parent="YSort/Player"]
 script = ExtResource("3_xe8eb")
@@ -41,7 +47,7 @@ position = Vector2(778, 369)
 script = ExtResource("3_tgcur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
-position = Vector2(263, 248.5)
+position = Vector2(3910, 260.5)
 shape = SubResource("RectangleShape2D_q2kol")
 
 [node name="timeEnergy" parent="." instance=ExtResource("5_gxbqi")]

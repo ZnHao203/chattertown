@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class toTown : Area2D
+public partial class ToHill : Area2D
 {
 	[Export]
-	private string TownScenePath = "res://scenes/main/main.tscn";
+	private string HillScenePath = "res://scenes/hill/hill.tscn";
 	
 	// Optional: Store the position where the player should spawn outside
 	[Export]
@@ -16,30 +16,25 @@ public partial class toTown : Area2D
 		InputPickable = true;
 	}
 	
-	private void _on_input_event(Node viewport, InputEvent @event, long shapeIdx)
+	private void _on_to_hill_input_event(Node viewport, InputEvent @event, long shapeIdx)
 	{
 		if (@event is InputEventMouseButton mouseEvent)
 		{
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
 			{
-				GD.Print("Going to Town...");
-				GoToTown();
+				GD.Print("Going to Hill Park...");
+				GoToHill();
 			}
 		}
 	}
 	
-	private void GoToTown()
+	private void GoToHill()
 	{
 		// Optional: Save the exit position for the player
 		// You could use an autoload/singleton to store this data
 		// or save it to a file if needed
 		
-		GetTree().ChangeSceneToFile(TownScenePath);
+		GetTree().ChangeSceneToFile(HillScenePath);
 		ChatBox.Instance.ToggleVisibility();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 }
