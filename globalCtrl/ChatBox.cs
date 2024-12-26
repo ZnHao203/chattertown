@@ -9,7 +9,7 @@ public partial class ChatBox : Control
 	private RichTextLabel _messageDisplay;
 	private ScrollContainer _scrollContainer;
 	private const int MAX_MESSAGES = 50;
-		
+
 	public override void _EnterTree()
 	{
 		base._EnterTree();
@@ -46,6 +46,8 @@ public partial class ChatBox : Control
 		{ 
 			BgColor = new Color(0, 0, 0, 0.8f) // Semi-transparent black
 		});
+		
+		ZIndex = 100;
 		// Set initial properties
 		//CustomMinimumSize = new Vector2(300, 600);
 		//AnchorRight = 1;
