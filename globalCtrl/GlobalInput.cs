@@ -22,6 +22,8 @@ public partial class GlobalInput : Node
 	{
 		var currentScene = GetTree().CurrentScene;
 		
+		ChatBox.Instance.ToggleVisibility();
+		
 		// If we're already in the map, go back to the previous scene
 		if (currentScene.SceneFilePath == MapScenePath)
 		{
