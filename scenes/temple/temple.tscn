@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://036qt1agj86k"]
+
+[ext_resource type="Texture2D" uid="uid://d13jbt66tk6us" path="res://assets/9_temple.png" id="1_sdlep"]
+[ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_48cuh"]
+[ext_resource type="Script" path="res://scenes/temple/TempleExit.cs" id="3_qi3po"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="4_7n20h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvywd"]
+size = Vector2(231, 274.5)
+
+[node name="temple" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(1077.89, 341.052)
+scale = Vector2(1.09882, 1.11788)
+texture = ExtResource("1_sdlep")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("2_48cuh")]
+position = Vector2(107, 504)
+scale = Vector2(4, 4)
+
+[node name="CameraController" type="Camera2D" parent="YSort/Player"]
+offset = Vector2(200, -160)
+
+[node name="TempleExit" type="Area2D" parent="."]
+script = ExtResource("3_qi3po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempleExit"]
+position = Vector2(-122.5, 389.75)
+shape = SubResource("RectangleShape2D_lvywd")
+
+[node name="timeEnergy" parent="." instance=ExtResource("4_7n20h")]
+
+[connection signal="input_event" from="TempleExit" to="TempleExit" method="_on_temple_exit_input_event"]

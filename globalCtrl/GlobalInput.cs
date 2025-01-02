@@ -4,7 +4,7 @@ using System;
 public partial class GlobalInput : Node
 {
 	[Export]
-	private string MapScenePath = "res://map/map.tscn";
+	private string MapScenePath = "res://scenes/map/map.tscn";
 	
 	// Store the previous scene path to return to
 	private string PreviousScenePath;
@@ -21,6 +21,8 @@ public partial class GlobalInput : Node
 	private void ToggleMap()
 	{
 		var currentScene = GetTree().CurrentScene;
+		
+		ChatBox.Instance.ToggleVisibility();
 		
 		// If we're already in the map, go back to the previous scene
 		if (currentScene.SceneFilePath == MapScenePath)

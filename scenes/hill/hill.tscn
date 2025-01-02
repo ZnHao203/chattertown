@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://broo7v6cck24w"]
+
+[ext_resource type="Texture2D" uid="uid://dvque4yscppbv" path="res://assets/8_hill_down.png" id="1_8wfsj"]
+[ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_vaekx"]
+[ext_resource type="Script" path="res://scenes/hill/HillExit.cs" id="3_mjn1n"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="4_n4cok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvywd"]
+size = Vector2(231, 274.5)
+
+[node name="hill" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(593.892, 332.018)
+scale = Vector2(1.11384, 1.22498)
+texture = ExtResource("1_8wfsj")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("2_vaekx")]
+position = Vector2(107, 504)
+scale = Vector2(4, 4)
+
+[node name="CameraController" type="Camera2D" parent="YSort/Player"]
+offset = Vector2(200, -160)
+
+[node name="HillExit" type="Area2D" parent="."]
+script = ExtResource("3_mjn1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HillExit"]
+position = Vector2(352, 406)
+shape = SubResource("RectangleShape2D_lvywd")
+
+[node name="timeEnergy" parent="." instance=ExtResource("4_n4cok")]
+
+[connection signal="input_event" from="HillExit" to="HillExit" method="_on_hill_exit_input_event"]

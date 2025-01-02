@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://blwn6klsv7ev6"]
+
+[ext_resource type="Texture2D" uid="uid://nkot8xafj80i" path="res://assets/2_home.png" id="1_ebm0s"]
+[ext_resource type="Script" path="res://scenes/home/Door.cs" id="2_a8q4q"]
+[ext_resource type="Script" path="res://scenes/home/Meat.cs" id="3_f4vuc"]
+[ext_resource type="Script" path="res://scenes/home/Plunger.cs" id="4_x4qwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llndx"]
+size = Vector2(144, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liawy"]
+size = Vector2(173.5, 210)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7it"]
+size = Vector2(85, 201)
+
+[node name="home" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(583.5, 329)
+scale = Vector2(0.661236, 0.841146)
+texture = ExtResource("1_ebm0s")
+
+[node name="Door" type="Area2D" parent="."]
+script = ExtResource("2_a8q4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(61, 324)
+shape = SubResource("RectangleShape2D_llndx")
+
+[node name="Meat" type="Area2D" parent="."]
+script = ExtResource("3_f4vuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meat"]
+position = Vector2(611.25, 440)
+shape = SubResource("RectangleShape2D_liawy")
+
+[node name="Plunger" type="Area2D" parent="."]
+script = ExtResource("4_x4qwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plunger"]
+position = Vector2(224.5, 481.5)
+shape = SubResource("RectangleShape2D_5a7it")
+
+[connection signal="input_event" from="Door" to="Door" method="_on_input_event"]
+[connection signal="input_event" from="Meat" to="Meat" method="_on_input_event"]
+[connection signal="input_event" from="Plunger" to="Plunger" method="_on_input_event"]

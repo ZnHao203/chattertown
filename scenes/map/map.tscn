@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://w472mpqgsud7"]
+
+[ext_resource type="Texture2D" uid="uid://r5v30ksork6b" path="res://assets/3_town_map.png" id="1_cmlr0"]
+[ext_resource type="Script" path="res://scenes/map/toTown.cs" id="2_spf87"]
+[ext_resource type="Script" path="res://scenes/map/ToBar.cs" id="3_j4g2w"]
+[ext_resource type="Script" path="res://scenes/map/ToHotel.cs" id="4_wxiug"]
+[ext_resource type="Script" path="res://scenes/map/ToHill.cs" id="5_fp8p0"]
+[ext_resource type="Script" path="res://scenes/map/ToTemple.cs" id="6_7hklf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scmnx"]
+size = Vector2(138, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyhwa"]
+size = Vector2(252, 234.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqavo"]
+size = Vector2(237, 151)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5m68"]
+size = Vector2(298, 163.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwcjl"]
+size = Vector2(178, 187)
+
+[node name="map" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581, 335)
+scale = Vector2(0.615639, 0.562814)
+texture = ExtResource("1_cmlr0")
+
+[node name="toTown" type="Area2D" parent="."]
+script = ExtResource("2_spf87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toTown"]
+position = Vector2(495, 112)
+shape = SubResource("RectangleShape2D_scmnx")
+
+[node name="toBar" type="Area2D" parent="."]
+script = ExtResource("3_j4g2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toBar"]
+position = Vector2(519, 529.75)
+shape = SubResource("RectangleShape2D_xyhwa")
+
+[node name="toHotel" type="Area2D" parent="."]
+script = ExtResource("4_wxiug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toHotel"]
+position = Vector2(901, 369)
+shape = SubResource("RectangleShape2D_vqavo")
+
+[node name="toHill" type="Area2D" parent="."]
+script = ExtResource("5_fp8p0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toHill"]
+position = Vector2(961, 171.25)
+shape = SubResource("RectangleShape2D_v5m68")
+
+[node name="toTemple" type="Area2D" parent="."]
+script = ExtResource("6_7hklf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="toTemple"]
+position = Vector2(222, 296)
+shape = SubResource("RectangleShape2D_cwcjl")
+
+[connection signal="input_event" from="toTown" to="toTown" method="_on_input_event"]
+[connection signal="input_event" from="toBar" to="toBar" method="_on_to_bar_input_event"]
+[connection signal="input_event" from="toHotel" to="toHotel" method="_on_to_hotel_input_event"]
+[connection signal="input_event" from="toHill" to="toHill" method="_on_to_hill_input_event"]
+[connection signal="input_event" from="toTemple" to="toTemple" method="_on_to_temple_input_event"]

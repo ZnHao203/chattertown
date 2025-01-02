@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://du4qdta0hfbxr"]
 
-[ext_resource type="Script" path="res://main/Player.cs" id="1_hf1kj"]
+[ext_resource type="Script" path="res://character/Player.cs" id="1_hf1kj"]
 [ext_resource type="Texture2D" uid="uid://ca35v04d2sxs0" path="res://assets/0_stickmen_replace.png" id="2_txbg3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ud3g"]

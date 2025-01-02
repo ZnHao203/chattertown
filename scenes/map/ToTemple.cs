@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class Door : Area2D
+public partial class ToTemple : Area2D
 {
 	[Export]
-	private string OutsideScenePath = "res://main/main.tscn";
+	private string TempleScenePath = "res://scenes/temple/temple.tscn";
 	
 	// Optional: Store the position where the player should spawn outside
 	[Export]
@@ -16,29 +16,25 @@ public partial class Door : Area2D
 		InputPickable = true;
 	}
 	
-	private void _on_input_event(Node viewport, InputEvent @event, long shapeIdx)
+	private void _on_to_temple_input_event(Node viewport, InputEvent @event, long shapeIdx)
 	{
 		if (@event is InputEventMouseButton mouseEvent)
 		{
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
 			{
-				GD.Print("Exiting house...");
-				ExitToOutside();
+				GD.Print("Going to Hill Park...");
+				GoToTemple();
 			}
 		}
 	}
 	
-	private void ExitToOutside()
+	private void GoToTemple()
 	{
 		// Optional: Save the exit position for the player
 		// You could use an autoload/singleton to store this data
 		// or save it to a file if needed
 		
-		GetTree().ChangeSceneToFile(OutsideScenePath);
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		GetTree().ChangeSceneToFile(TempleScenePath);
+		ChatBox.Instance.ToggleVisibility();
 	}
 }
