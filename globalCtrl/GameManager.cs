@@ -45,7 +45,17 @@ public partial class GameManager : Node
 	public void StartNewDay()
 	{
 		CurrentEnergy = MaxEnergyPerDay;
+		ChatBox.Instance.AddMessage("SYSTEM", $"Starting day {CurrentDay}");
 		EmitSignal(SignalName.DayStarted, CurrentDay, CurrentEnergy);
+
+		// Handle different days
+		switch (CurrentDay)
+		{
+			case 1:
+				HandleDay1();
+				break;
+			// Add more cases for other days
+		}
 	}
 
 	public bool UseEnergy(int amount)
@@ -70,4 +80,39 @@ public partial class GameManager : Node
 
 	[Signal]
 	public delegate void EnergyChangedEventHandler(int newEnergy);
+
+	// DAY 1 specific
+	public bool IsHomeDoorUnlocked { get; private set; } = false;
+	public bool IsCutscenePlayed { get; set; } = false;
+	private void HandleDay1()
+	{
+		// Switch to home scene
+		GetTree().ChangeSceneToFile("res://scenes/home/home.tscn");
+		
+		// Add any Day 1 specific dialogue or setup
+		DisplayDialogue("SYSTEM", "Good morning, starshine. The Earth says hello!");
+	}
+
+	// Track collected items
+    public bool HasMeat { get; private set; } = false;
+
+
+    public void CollectMeat()
+    {
+        HasMeat = true;
+        CheckDoorUnlock();
+    }
+
+    private void CheckDoorUnlock()
+    {
+        if (HasMeat && !IsHomeDoorUnlocked)
+        {
+            IsHomeDoorUnlocked = true;
+			EmitSignal(SignalName.DoorUnlocked);
+        }
+    }
+
+    [Signal]
+    public delegate void DoorUnlockedEventHandler();
+
 }
