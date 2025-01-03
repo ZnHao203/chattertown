@@ -81,6 +81,40 @@ public partial class GameManager : Node
 	[Signal]
 	public delegate void EnergyChangedEventHandler(int newEnergy);
 
+	private ConfigFile _config = new ConfigFile();
+    private const string SAVE_PATH = "user://game_data.cfg";
+    private const string TALKED_TO_SECTION = "talked_to_npcs";
+	public bool HasTalkedTo(string npcName)
+    {
+        LoadConfig();
+        return _config.HasSectionKey(TALKED_TO_SECTION, npcName);
+    }
+
+    public void RecordCharacterInteraction(string npcName)
+    {
+        LoadConfig();
+        _config.SetValue(TALKED_TO_SECTION, npcName, true);
+        SaveConfig();
+    }
+
+    private void LoadConfig()
+    {
+        Error error = _config.Load(SAVE_PATH);
+        if (error != Error.Ok)
+        {
+            GD.Print("No saved data found. Creating new save file.");
+            SaveConfig(); // Create a new save file if none exists
+        }
+    }
+
+    private void SaveConfig()
+    {
+        Error error = _config.Save(SAVE_PATH);
+        if (error != Error.Ok)
+        {
+            GD.PrintErr("Failed to save game data!");
+        }
+    }
 	// DAY 1 specific
 	public bool IsHomeDoorUnlocked { get; private set; } = false;
 	public bool IsCutscenePlayed { get; set; } = false;
