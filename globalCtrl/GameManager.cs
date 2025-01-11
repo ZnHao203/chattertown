@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class GameManager : Node
 {
@@ -12,7 +13,27 @@ public partial class GameManager : Node
 
 	public override void _Ready()
 	{
-		
+		// Clear dialogue history
+        _config = new ConfigFile();  // Create new empty config
+        SaveConfig();  // Save the empty config to clear old data
+        
+        // Reset current dialogue state
+        currentDialogue = null;
+        currentChoices = null;
+        
+        // Reset energy
+        CurrentEnergy = MaxEnergyPerDay;
+        
+        // Reset current day
+        CurrentDay = 1;
+        
+        // Reset Day 1 specific states
+        IsHomeDoorUnlocked = false;
+        IsCutscenePlayed = false;
+        HasMeat = false;
+        
+        GD.Print("Game state reset - Starting new game");
+
 		if (Instance == null)
 		{
 			Instance = this;
@@ -41,6 +62,84 @@ public partial class GameManager : Node
 		
 		ChatBox.Instance.AddMessage(speaker, message);
 	}
+
+	private DialogueLine currentDialogue;
+    private List<DialogueChoice> currentChoices;
+	// public void DisplayDialogue(string characterName, DialogueLine dialogue)
+    // {
+    //     // Display the character's dialogue
+    //     DisplayDialogue(characterName, dialogue.Text);
+        
+    //     // Store current dialogue and choices
+    //     currentDialogue = dialogue;
+    //     currentChoices = dialogue.Choices;
+
+    //     // Display numbered choices
+    //     if (dialogue.Choices != null && dialogue.Choices.Count > 0)
+    //     {
+    //         string choiceText = "\n"; // Start with newline
+    //         for (int i = 0; i < dialogue.Choices.Count; i++)
+    //         {
+    //             choiceText += $"{i + 1}. {dialogue.Choices[i].Text}\n";
+    //         }
+    //         // Append choices to dialogue text
+    //         DisplayDialogue("", choiceText); // Empty character name for choices
+    //     }
+    // }
+	public void DisplayDialogue(string characterName, DialogueLine dialogue)
+    {
+        // Debug print
+        GD.Print($"Displaying dialogue for {characterName}: {dialogue.Text}");
+        GD.Print($"Number of choices: {dialogue.Choices?.Count ?? 0}");
+
+        // Display the character's dialogue
+        DisplayDialogue(characterName, dialogue.Text);
+        
+        // Store current dialogue and choices
+        currentDialogue = dialogue;
+        currentChoices = dialogue.Choices;
+
+        // Display numbered choices
+        if (dialogue.Choices != null && dialogue.Choices.Count > 0)
+        {
+            // string choiceText = "\n"; // Start with newline
+			string choiceText = "";
+            for (int i = 0; i < dialogue.Choices.Count; i++)
+            {
+                choiceText += $"\n{i + 1}. {dialogue.Choices[i].Text}";
+            }
+            // Append choices to dialogue text
+            DisplayDialogue("[Choices]", choiceText); // Empty character name for choices
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventKey eventKey && eventKey.Pressed)
+        {
+            // Check for number keys 1-9
+            if (currentChoices != null && currentChoices.Count > 0)
+            {
+                int number = (int)eventKey.Keycode - (int)Key.Key1;
+                if (number >= 0 && number < currentChoices.Count)
+                {
+                    // Display the player's choice with "You:" prefix
+                    DisplayDialogue("You", currentChoices[number].Text);
+					HandleChoice(number);
+                }
+            }
+        }
+    }
+
+    private void HandleChoice(int choiceIndex)
+    {
+        var choice = currentChoices[choiceIndex];
+        choice.OnSelect?.Invoke();
+        
+        // Clear current choices after selection
+        currentChoices = null;
+        currentDialogue = null;
+    }
 
 	public void StartNewDay()
 	{
