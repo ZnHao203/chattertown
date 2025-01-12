@@ -13,7 +13,7 @@ public partial class Paul : Character
         InitializeDialogues();
     }
 
-	 protected override void InitializeDialogues()
+	protected override void InitializeDialogues()
     {
         // First meeting dialogue
 		_dialogueLines.Clear();

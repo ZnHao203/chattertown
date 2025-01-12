@@ -35,13 +35,15 @@ public partial class Door : Area2D
 		{
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
 			{
-				if (_isUnlocked){
+				if (! GameManager.Instance.isNight){
+					// can exit house in the morning
 					GD.Print("Exiting house...");
 					ExitToOutside();
 				}
 				else 
 				{
-					GameManager.Instance.DisplayDialogue("Me", "I should gather everything I need first...");
+					// can't exit house at night
+					GameManager.Instance.DisplayDialogue("You", "I shouldn't go out at night...");
 				}
 				
 			}

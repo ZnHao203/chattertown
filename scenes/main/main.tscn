@@ -1,30 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4bjk5ngn57h"]
+[gd_scene load_steps=12 format=3 uid="uid://c4bjk5ngn57h"]
 
-[ext_resource type="Texture2D" uid="uid://bhfd76wd6iulw" path="res://assets/1_neighborhood.png" id="1_lyh6e"]
+[ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_k8u1g"]
+[ext_resource type="Texture2D" uid="uid://dduoy7b7jfsk1" path="res://assets/scenes/neighborhood1.png" id="1_oceta"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="1_qgybj"]
 [ext_resource type="Script" path="res://scenes/main/House.cs" id="3_tgcur"]
 [ext_resource type="Script" path="res://scenes/main/TestGameManager.cs" id="3_xe8eb"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_gxbqi"]
 [ext_resource type="PackedScene" uid="uid://cnboxyda30gxv" path="res://character/npcs/Alex.tscn" id="6_tyl4e"]
 [ext_resource type="PackedScene" uid="uid://ri483juss6q2" path="res://character/npcs/betty.tscn" id="7_rl7ip"]
-[ext_resource type="PackedScene" uid="uid://ci2cpynj507l" path="res://character/paul.tscn" id="8_1mky1"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="8_w3vh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2kol"]
-size = Vector2(318, 261)
+size = Vector2(590, 364.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om2oj"]
+size = Vector2(251.5, 184)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_k8u1g")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(3180, 330)
-scale = Vector2(2.553, 2.3)
-texture = ExtResource("1_lyh6e")
+position = Vector2(854, 227.5)
+scale = Vector2(0.644792, 0.579474)
+texture = ExtResource("1_oceta")
 region_rect = Rect2(-3180, 0, 7300, 600)
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("1_qgybj")]
-position = Vector2(173, 458)
+position = Vector2(159, 449)
 scale = Vector2(3, 3)
 
 [node name="CameraController" type="Camera2D" parent="YSort/Player"]
@@ -39,21 +44,27 @@ limit_smoothed = true
 script = ExtResource("3_xe8eb")
 
 [node name="Alex" parent="YSort" instance=ExtResource("6_tyl4e")]
-position = Vector2(551, 359)
+position = Vector2(470, 408)
 
 [node name="Betty" parent="YSort" instance=ExtResource("7_rl7ip")]
-position = Vector2(778, 369)
+position = Vector2(648, 418)
 
 [node name="House" type="Area2D" parent="."]
 script = ExtResource("3_tgcur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House"]
-position = Vector2(3910, 260.5)
+position = Vector2(1177, 298.75)
 shape = SubResource("RectangleShape2D_q2kol")
 
 [node name="timeEnergy" parent="." instance=ExtResource("5_gxbqi")]
 
-[node name="Paul" parent="." instance=ExtResource("8_1mky1")]
-position = Vector2(5127, 408)
+[node name="Background2" parent="." instance=ExtResource("8_w3vh7")]
+
+[node name="sign" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sign"]
+position = Vector2(304.25, 182)
+shape = SubResource("RectangleShape2D_om2oj")
 
 [connection signal="input_event" from="House" to="House" method="_on_input_event"]
+[connection signal="input_event" from="sign" to="." method="_on_area_2d_input_event"]

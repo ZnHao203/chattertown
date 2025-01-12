@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://d02hatt7twen5"]
+
+[ext_resource type="Script" path="res://scenes/town2/Town2.cs" id="1_htc0y"]
+[ext_resource type="Texture2D" uid="uid://cth2elohc45m" path="res://assets/scenes/neighborhood2.png" id="1_leeof"]
+[ext_resource type="PackedScene" uid="uid://ci2cpynj507l" path="res://character/paul.tscn" id="2_uf3gd"]
+[ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="3_0hppg"]
+[ext_resource type="Script" path="res://scenes/main/TestGameManager.cs" id="4_lhgnc"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_yjsey"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="6_g1jf7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u74vj"]
+size = Vector2(186, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1t3j"]
+size = Vector2(143.5, 133)
+
+[node name="town2" type="Node"]
+script = ExtResource("1_htc0y")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(969, 239)
+scale = Vector2(0.7, 0.673184)
+texture = ExtResource("1_leeof")
+region_rect = Rect2(-3180, 0, 7300, 600)
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Paul" parent="YSort" instance=ExtResource("2_uf3gd")]
+position = Vector2(1539, 454)
+
+[node name="Player" parent="YSort" instance=ExtResource("3_0hppg")]
+position = Vector2(299, 446)
+scale = Vector2(3, 3)
+
+[node name="CameraController" type="Camera2D" parent="YSort/Player"]
+offset = Vector2(200, -120)
+limit_left = -10000
+limit_top = -1000
+limit_right = 10000
+limit_bottom = 1000
+limit_smoothed = true
+
+[node name="TestGameManager" type="Node" parent="YSort/Player"]
+script = ExtResource("4_lhgnc")
+
+[node name="timeEnergy" parent="." instance=ExtResource("5_yjsey")]
+
+[node name="Background2" parent="." instance=ExtResource("6_g1jf7")]
+
+[node name="SignVillage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SignVillage"]
+position = Vector2(47, 423)
+shape = SubResource("RectangleShape2D_u74vj")
+
+[node name="signHillPark" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="signHillPark"]
+position = Vector2(1713.25, 414)
+shape = SubResource("RectangleShape2D_r1t3j")
+
+[connection signal="input_event" from="SignVillage" to="." method="_on_sign_village_input_event"]
+[connection signal="input_event" from="signHillPark" to="." method="_on_sign_hill_park_input_event"]

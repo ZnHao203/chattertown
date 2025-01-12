@@ -10,6 +10,7 @@ public partial class GameManager : Node
 	public int MaxEnergyPerDay { get; private set; } = 100;
 	public int CurrentEnergy { get; private set; }
 	public int CurrentDay { get; private set; } = 1;
+    public bool isNight { get; private set; } = false;
 
 	public override void _Ready()
 	{
@@ -30,7 +31,7 @@ public partial class GameManager : Node
         // Reset Day 1 specific states
         IsHomeDoorUnlocked = false;
         IsCutscenePlayed = false;
-        HasMeat = false;
+        HasTalkedToMeat = false;
         
         GD.Print("Game state reset - Starting new game");
 
@@ -65,27 +66,7 @@ public partial class GameManager : Node
 
 	private DialogueLine currentDialogue;
     private List<DialogueChoice> currentChoices;
-	// public void DisplayDialogue(string characterName, DialogueLine dialogue)
-    // {
-    //     // Display the character's dialogue
-    //     DisplayDialogue(characterName, dialogue.Text);
-        
-    //     // Store current dialogue and choices
-    //     currentDialogue = dialogue;
-    //     currentChoices = dialogue.Choices;
 
-    //     // Display numbered choices
-    //     if (dialogue.Choices != null && dialogue.Choices.Count > 0)
-    //     {
-    //         string choiceText = "\n"; // Start with newline
-    //         for (int i = 0; i < dialogue.Choices.Count; i++)
-    //         {
-    //             choiceText += $"{i + 1}. {dialogue.Choices[i].Text}\n";
-    //         }
-    //         // Append choices to dialogue text
-    //         DisplayDialogue("", choiceText); // Empty character name for choices
-    //     }
-    // }
 	public void DisplayDialogue(string characterName, DialogueLine dialogue)
     {
         // Debug print
@@ -141,20 +122,18 @@ public partial class GameManager : Node
         currentDialogue = null;
     }
 
+
 	public void StartNewDay()
 	{
-		CurrentEnergy = MaxEnergyPerDay;
+		isNight = false;
+        CurrentEnergy = MaxEnergyPerDay;
 		ChatBox.Instance.AddMessage("SYSTEM", $"Starting day {CurrentDay}");
 		EmitSignal(SignalName.DayStarted, CurrentDay, CurrentEnergy);
 
-		// Handle different days
-		switch (CurrentDay)
-		{
-			case 1:
-				HandleDay1();
-				break;
-			// Add more cases for other days
-		}
+		// Switch to home scene
+		GetTree().ChangeSceneToFile("res://scenes/home/home.tscn");
+		// Add any Day 1 specific dialogue or setup
+		DisplayDialogue("SYSTEM", "Good morning, starshine. The Earth says hello!");
 	}
 
 	public bool UseEnergy(int amount)
@@ -168,10 +147,48 @@ public partial class GameManager : Node
 		return false;
 	}
 
+    private Dictionary<string, bool> previousDayClues = new Dictionary<string, bool> {
+			{ "Paul", false },
+			{ "Aileen", false }
+	};
+	private List<string> charactersToTrack = new List<string> { "Paul", "Aileen" }; // Add more as needed
+
+	public void InitializePreviousClues()
+	{
+		foreach (var character in charactersToTrack)
+		{
+			previousDayClues[character] = HasTalkedTo(character);
+		}
+        GD.Print($"Previous day clues: {string.Join(", ", previousDayClues)}");
+	}
+    public List<string> GetNewClues()
+	{
+		List<string> newClues = new List<string>();
+		
+		foreach (var character in charactersToTrack)
+		{
+			bool talkedToToday = HasTalkedTo(character);
+			bool talkedToPreviously = previousDayClues[character];
+			GD.Print($"Checking {character}: {talkedToToday} vs {talkedToPreviously}");
+			if (!talkedToPreviously && talkedToToday)
+			{
+				newClues.Add(character);
+			}
+		}
+		
+		return newClues;
+	}
+
 	public void AdvanceToNextDay()
 	{
 		CurrentDay++;
 		StartNewDay();
+	}
+    public void StartNight()
+	{
+		isNight = true;
+        HasTalkedToMeat = false; // need to talk to meat again every night
+        GetTree().ChangeSceneToFile("res://scenes/home/home.tscn");
 	}
 
 	[Signal]
@@ -217,33 +234,18 @@ public partial class GameManager : Node
 	// DAY 1 specific
 	public bool IsHomeDoorUnlocked { get; private set; } = false;
 	public bool IsCutscenePlayed { get; set; } = false;
-	private void HandleDay1()
-	{
-		// Switch to home scene
-		GetTree().ChangeSceneToFile("res://scenes/home/home.tscn");
-		
-		// Add any Day 1 specific dialogue or setup
-		DisplayDialogue("SYSTEM", "Good morning, starshine. The Earth says hello!");
-	}
+
 
 	// Track collected items
-    public bool HasMeat { get; private set; } = false;
+    public bool HasTalkedToMeat { get; private set; } = false;
 
 
     public void CollectMeat()
     {
-        HasMeat = true;
-        CheckDoorUnlock();
+        HasTalkedToMeat = true;
     }
 
-    private void CheckDoorUnlock()
-    {
-        if (HasMeat && !IsHomeDoorUnlocked)
-        {
-            IsHomeDoorUnlocked = true;
-			EmitSignal(SignalName.DoorUnlocked);
-        }
-    }
+
 
     [Signal]
     public delegate void DoorUnlockedEventHandler();

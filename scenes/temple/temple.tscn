@@ -1,37 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://036qt1agj86k"]
+[gd_scene load_steps=7 format=3 uid="uid://036qt1agj86k"]
 
-[ext_resource type="Texture2D" uid="uid://d13jbt66tk6us" path="res://assets/9_temple.png" id="1_sdlep"]
-[ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_48cuh"]
+[ext_resource type="Texture2D" uid="uid://cjb0wfiwme6p6" path="res://assets/scenes/temple.png" id="1_a4jsl"]
 [ext_resource type="Script" path="res://scenes/temple/TempleExit.cs" id="3_qi3po"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="4_7n20h"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="5_p3y2y"]
+[ext_resource type="PackedScene" uid="uid://cimas0lny1arj" path="res://character/aileen.tscn" id="6_xlj4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvywd"]
-size = Vector2(231, 274.5)
+size = Vector2(189.5, 329.25)
 
 [node name="temple" type="Node"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(1077.89, 341.052)
-scale = Vector2(1.09882, 1.11788)
-texture = ExtResource("1_sdlep")
+position = Vector2(542, 327)
+scale = Vector2(0.441926, 0.381406)
+texture = ExtResource("1_a4jsl")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="YSort" instance=ExtResource("2_48cuh")]
-position = Vector2(107, 504)
-scale = Vector2(4, 4)
-
-[node name="CameraController" type="Camera2D" parent="YSort/Player"]
-offset = Vector2(200, -160)
+[node name="Aileen" parent="YSort" instance=ExtResource("6_xlj4y")]
+position = Vector2(488, 379)
 
 [node name="TempleExit" type="Area2D" parent="."]
 script = ExtResource("3_qi3po")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TempleExit"]
-position = Vector2(-122.5, 389.75)
+position = Vector2(92.25, 444.375)
 shape = SubResource("RectangleShape2D_lvywd")
 
 [node name="timeEnergy" parent="." instance=ExtResource("4_7n20h")]
+
+[node name="Background2" parent="." instance=ExtResource("5_p3y2y")]
 
 [connection signal="input_event" from="TempleExit" to="TempleExit" method="_on_temple_exit_input_event"]

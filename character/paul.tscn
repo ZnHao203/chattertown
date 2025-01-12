@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ci2cpynj507l"]
 
 [ext_resource type="Script" path="res://character/Paul.cs" id="1_usuf4"]
-[ext_resource type="Texture2D" uid="uid://cv3yeoq17jbm8" path="res://assets/characters/oldPaul.png" id="2_5jtt6"]
+[ext_resource type="Texture2D" uid="uid://b8ad2i44ki3nb" path="res://assets/characters/oldPaul.png" id="2_5jtt6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8sl1"]
 size = Vector2(157, 238)

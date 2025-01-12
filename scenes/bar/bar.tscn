@@ -1,19 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm2f4016c7oy4"]
+[gd_scene load_steps=7 format=3 uid="uid://cm2f4016c7oy4"]
 
-[ext_resource type="Texture2D" uid="uid://f6l6cdlfih23" path="res://assets/7_bar.png" id="1_ot1di"]
+[ext_resource type="Texture2D" uid="uid://cmmk5ktxrrtag" path="res://assets/scenes/bar.png" id="1_cj2a5"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_g3g7p"]
 [ext_resource type="Script" path="res://scenes/bar/BarDoor.cs" id="3_a1iad"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="3_p7v2n"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="5_ec1nr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4p35j"]
-size = Vector2(206, 647)
+size = Vector2(185, 647)
 
 [node name="bar" type="Node"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(1529, 343)
-scale = Vector2(1.37201, 1.64758)
-texture = ExtResource("1_ot1di")
+position = Vector2(1479.5, 343)
+scale = Vector2(0.91276, 0.813679)
+texture = ExtResource("1_cj2a5")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -29,9 +30,11 @@ offset = Vector2(200, -160)
 script = ExtResource("3_a1iad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarDoor"]
-position = Vector2(-174, 343.5)
+position = Vector2(-184.5, 343.5)
 shape = SubResource("RectangleShape2D_4p35j")
 
 [node name="timeEnergy" parent="." instance=ExtResource("3_p7v2n")]
+
+[node name="Background2" parent="." instance=ExtResource("5_ec1nr")]
 
 [connection signal="input_event" from="BarDoor" to="BarDoor" method="_on_bar_door_input_event"]
