@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://du4qdta0hfbxr"]
 
 [ext_resource type="Script" path="res://character/Player.cs" id="1_hf1kj"]
-[ext_resource type="Texture2D" uid="uid://ca35v04d2sxs0" path="res://assets/0_stickmen_replace.png" id="2_txbg3"]
+[ext_resource type="Texture2D" uid="uid://elv650sd72ef" path="res://assets/characters/default.png" id="2_kkr2f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ud3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_txbg3")
+"texture": ExtResource("2_kkr2f")
 }],
 "loop": true,
 "name": &"default",
@@ -23,7 +23,8 @@ script = ExtResource("1_hf1kj")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+position = Vector2(1, 1.5)
+scale = Vector2(0.124444, 0.0997341)
 sprite_frames = SubResource("SpriteFrames_5ud3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

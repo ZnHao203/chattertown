@@ -23,6 +23,7 @@ GameManager="*res://globalCtrl/GameManager.cs"
 
 [display]
 
+window/size/viewport_width=1500
 window/stretch/aspect="expand"
 
 [dotnet]

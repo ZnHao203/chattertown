@@ -5,5 +5,4 @@
 
 [node name="Alex" instance=ExtResource("1_ivdxb")]
 script = ExtResource("2_3a1n0")
-_dialogLines = PackedStringArray("Nice weather today!", "How are you doing?", "Just another day in town...")
 CharacterName = "Alex"

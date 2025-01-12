@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cimas0lny1arj"]
+
+[ext_resource type="Texture2D" uid="uid://4juuhyaqsn0y" path="res://assets/characters/Aileen.png" id="1_pr1jh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfdij"]
+size = Vector2(449, 261)
+
+[node name="Aileen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(208.5, 119)
+scale = Vector2(0.458057, 0.43617)
+texture = ExtResource("1_pr1jh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(214.5, 120.5)
+shape = SubResource("RectangleShape2D_wfdij")

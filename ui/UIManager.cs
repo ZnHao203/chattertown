@@ -30,7 +30,17 @@ public partial class UIManager : Control
 	
 	private void OnNextDayPressed()
 	{
-		GameManager.Instance.AdvanceToNextDay();
+		if (! GameManager.Instance.isNight){
+			// if pressed on day, start night
+			GameManager.Instance.StartNight();
+		} else if (GameManager.Instance.HasTalkedToMeat){
+			// if pressed on night after talked to meat, start day
+			GameManager.Instance.AdvanceToNextDay(); 
+		} else {
+			// if not talked to meat at night, need to talk to meat
+			// can't exit house at night
+			GameManager.Instance.DisplayDialogue("You", "Maybe I can chat with Meat.");
+		}
 	}
 
 	private void UpdateUI(int day, int energy)

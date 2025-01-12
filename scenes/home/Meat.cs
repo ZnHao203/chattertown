@@ -23,24 +23,16 @@ public partial class Meat : Area2D
 	
 	private void HandleMeatDialogue()
 	{
-		var result = GameManager.Instance.CurrentDay switch
-		{
-			1 => HandleDay1(),
-			_ => HandleDefaultDay()  // _ is the default case
-		};
+		if (! GameManager.Instance.isNight){
+			// meat sleeps at day
+			GameManager.Instance.DisplayDialogue("???", "Still asleep.");
+		} else {
+			// can interact with meat at night
+			var meatChar = GetParent<MeatChar>();
+			meatChar.StartNightRecap();
+			GameManager.Instance.CollectMeat();
+		}
 	}
-	
-	private int HandleDay1()
-	{
-		// assume it's morning
-		GameManager.Instance.CollectMeat();
-		GameManager.Instance.DisplayDialogue("???", "Still asleep.");
-		return 0;
-	}
-	
-	private int HandleDefaultDay()
-	{
-		return 0;
-	}
+
 	
 }

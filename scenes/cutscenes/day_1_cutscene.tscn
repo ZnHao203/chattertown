@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg5a6jwr8xjo3"]
+[gd_scene load_steps=4 format=3 uid="uid://dg5a6jwr8xjo3"]
 
 [ext_resource type="Script" path="res://scenes/cutscenes/Day1Cutscene.cs" id="1_po7j2"]
-[ext_resource type="Texture2D" uid="uid://cce5kijfaqccd" path="res://assets/10_day1_cutscene.png" id="2_7g5k4"]
+[ext_resource type="Texture2D" uid="uid://tqqe66rakgod" path="res://assets/scenes/CutScene.png" id="2_80ve0"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="3_pt7l2"]
 
 [node name="Day1Cutscene" type="Node"]
 script = ExtResource("1_po7j2")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(575, 322.25)
-scale = Vector2(0.622703, 0.666845)
-texture = ExtResource("2_7g5k4")
+position = Vector2(566.5, 322)
+scale = Vector2(0.399289, 0.346906)
+texture = ExtResource("2_80ve0")
+
+[node name="Background2" parent="." instance=ExtResource("3_pt7l2")]

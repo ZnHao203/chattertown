@@ -4,7 +4,7 @@ using System;
 public partial class ToHill : Area2D
 {
 	[Export]
-	private string HillScenePath = "res://scenes/hill/hill.tscn";
+	private string HillScenePath = "res://scenes/hill/hill_down.tscn";
 	
 	// Optional: Store the position where the player should spawn outside
 	[Export]

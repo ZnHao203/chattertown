@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4lji7qvcccr2"]
+
+[ext_resource type="Script" path="res://scenes/hill/HillTop.cs" id="1_0pd0p"]
+[ext_resource type="Texture2D" uid="uid://c31j60hurfxpr" path="res://assets/scenes/hill_top_A.png" id="2_ibyy2"]
+[ext_resource type="Texture2D" uid="uid://tjf3fdwbvjjt" path="res://assets/scenes/hill_top.png" id="3_glha0"]
+[ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="4_fir4b"]
+[ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="5_npxtp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31jds"]
+size = Vector2(562, 219.5)
+
+[node name="HillTop" type="Node"]
+script = ExtResource("1_0pd0p")
+
+[node name="SecretPathBackground" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(531.514, 325)
+scale = Vector2(0.42482, 0.370497)
+texture = ExtResource("2_ibyy2")
+
+[node name="DefaultBackground" type="Sprite2D" parent="."]
+position = Vector2(531.5, 323)
+scale = Vector2(0.424831, 0.373928)
+texture = ExtResource("3_glha0")
+
+[node name="ToHillMiddle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToHillMiddle"]
+position = Vector2(797, 369.25)
+shape = SubResource("RectangleShape2D_31jds")
+
+[node name="timeEnergy" parent="." instance=ExtResource("4_fir4b")]
+
+[node name="Background2" parent="." instance=ExtResource("5_npxtp")]
+
+[connection signal="input_event" from="ToHillMiddle" to="." method="_on_to_hill_middle_input_event"]
