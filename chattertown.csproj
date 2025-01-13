@@ -5,4 +5,8 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.BedrockRuntime" Version="3.7.411.18" />
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b38qmy3dqfpvf"]
+
+[ext_resource type="Texture2D" uid="uid://cdrntv07iyt3u" path="res://assets/characters/Sally.png" id="1_bolvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8sl1"]
+size = Vector2(142, 238)
+
+[node name="Sally" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(81.5, 24.7926)
+scale = Vector2(0.380711, 0.337615)
+texture = ExtResource("1_bolvq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(81, 15)
+shape = SubResource("RectangleShape2D_i8sl1")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpyqntcsh6yfx"]
+
+[ext_resource type="Texture2D" uid="uid://bt6g4r0rvtnh" path="res://assets/characters/LadyQuack.png" id="1_yqywv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfdij"]
+size = Vector2(646.5, 351.5)
+
+[node name="LadyQuack" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(296, 73.9998)
+scale = Vector2(0.472952, 0.415584)
+texture = ExtResource("1_yqywv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(303, 74)
+shape = SubResource("RectangleShape2D_wfdij")

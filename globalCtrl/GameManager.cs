@@ -182,6 +182,18 @@ public partial class GameManager : Node
 	public void AdvanceToNextDay()
 	{
 		CurrentDay++;
+
+        // Check if we've reached day 4
+        if (CurrentDay >= 4)
+        {
+            // Switch to the end scene
+            ChatBox.Instance.ToggleVisibility();
+            GD.Print("Changed scene to new file.");
+            GetTree().ChangeSceneToFile("res://scenes/end/end_scene.tscn");
+            return;
+        }
+
+
 		StartNewDay();
 	}
     public void StartNight()
@@ -249,5 +261,6 @@ public partial class GameManager : Node
 
     [Signal]
     public delegate void DoorUnlockedEventHandler();
+
 
 }

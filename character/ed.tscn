@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbhrb4ogqhs13"]
+
+[ext_resource type="Texture2D" uid="uid://dxm3qe1p02nt4" path="res://assets/characters/Ed.png" id="1_la3y6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8sl1"]
+size = Vector2(278, 238)
+
+[node name="Ed" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(58.5, -0.500015)
+scale = Vector2(0.250694, 0.247925)
+texture = ExtResource("1_la3y6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(61, 0)
+shape = SubResource("RectangleShape2D_i8sl1")

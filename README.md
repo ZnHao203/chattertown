@@ -11,6 +11,16 @@ A social game built with Godot 4 and C#.
 2. Install .NET SDK 6.0 or later
    - Download from the official Microsoft website
 
+3. Install Amazon Bedrock
+dotnet add package dotenv.net
+dotnet add package AWSSDK.BedrockRuntime
+
+If you want to use Amazon Bedrock to interact with characters in a more interesting way, please enter your aws access key and secret access key.
+You need to have access to anthropic claude 3.5 Haiku model. us.anthropic.claude-3-5-haiku-20241022-v1:0
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=us-east-2
+
 ## Running the Project
 
 1. Clone this repository
