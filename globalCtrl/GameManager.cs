@@ -49,7 +49,8 @@ public partial class GameManager : Node
 			GD.Print("ChatBox found successfully");
 		}
 		GD.Print("GameManager Ready"); // Debug print
-		StartNewDay();
+		// StartNewDay();
+        GetTree().ChangeSceneToFile("res://scenes/oped/open_scene.tscn");
 	}
 	
 	public void DisplayDialogue(string speaker, string message)
@@ -189,7 +190,7 @@ public partial class GameManager : Node
             // Switch to the end scene
             ChatBox.Instance.ToggleVisibility();
             GD.Print("Changed scene to new file.");
-            GetTree().ChangeSceneToFile("res://scenes/end/end_scene.tscn");
+            GetTree().ChangeSceneToFile("res://scenes/oped/end_scene.tscn");
             return;
         }
 

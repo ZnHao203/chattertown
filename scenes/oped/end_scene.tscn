@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3qisvpws1y1h"]
 
-[ext_resource type="Script" path="res://scenes/end/EndScene.cs" id="1_a4x21"]
+[ext_resource type="Script" path="res://scenes/oped/EndScene.cs" id="1_a4x21"]
 [ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="2_uabsa"]
 [ext_resource type="FontFile" uid="uid://cr33kmjgtiji7" path="res://assets/07558_CenturyGothic.ttf" id="3_dctsm"]
 
