@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://d02hatt7twen5"]
+[gd_scene load_steps=13 format=3 uid="uid://d02hatt7twen5"]
 
 [ext_resource type="Script" path="res://scenes/town2/Town2.cs" id="1_htc0y"]
 [ext_resource type="Texture2D" uid="uid://cth2elohc45m" path="res://assets/scenes/neighborhood2.png" id="1_leeof"]
 [ext_resource type="PackedScene" uid="uid://ci2cpynj507l" path="res://character/paul.tscn" id="2_uf3gd"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="3_0hppg"]
+[ext_resource type="PackedScene" uid="uid://pnus8spuqq1l" path="res://character/npcs/kid_2.tscn" id="4_g3fk0"]
 [ext_resource type="Script" path="res://scenes/main/TestGameManager.cs" id="4_lhgnc"]
+[ext_resource type="PackedScene" uid="uid://dukthowmkc6q" path="res://character/npcs/kid_3.tscn" id="5_o0p50"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_yjsey"]
 [ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="6_g1jf7"]
+[ext_resource type="PackedScene" uid="uid://fv4nr8sf327q" path="res://character/cameron.tscn" id="8_eggll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u74vj"]
 size = Vector2(186, 116)
@@ -29,6 +32,12 @@ y_sort_enabled = true
 [node name="Paul" parent="YSort" instance=ExtResource("2_uf3gd")]
 position = Vector2(1539, 454)
 
+[node name="Kid2" parent="YSort" instance=ExtResource("4_g3fk0")]
+position = Vector2(523, 449)
+
+[node name="Kid3" parent="YSort" instance=ExtResource("5_o0p50")]
+position = Vector2(409, 447)
+
 [node name="Player" parent="YSort" instance=ExtResource("3_0hppg")]
 position = Vector2(299, 446)
 scale = Vector2(3, 3)
@@ -43,6 +52,9 @@ limit_smoothed = true
 
 [node name="TestGameManager" type="Node" parent="YSort/Player"]
 script = ExtResource("4_lhgnc")
+
+[node name="Cameron" parent="YSort" instance=ExtResource("8_eggll")]
+position = Vector2(1135, 461)
 
 [node name="timeEnergy" parent="." instance=ExtResource("5_yjsey")]
 

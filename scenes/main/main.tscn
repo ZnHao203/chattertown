@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4bjk5ngn57h"]
+[gd_scene load_steps=14 format=3 uid="uid://c4bjk5ngn57h"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_k8u1g"]
 [ext_resource type="Texture2D" uid="uid://dduoy7b7jfsk1" path="res://assets/scenes/neighborhood1.png" id="1_oceta"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scenes/main/House.cs" id="3_tgcur"]
 [ext_resource type="Script" path="res://scenes/main/TestGameManager.cs" id="3_xe8eb"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="5_gxbqi"]
+[ext_resource type="PackedScene" uid="uid://djfcdv3uism1a" path="res://character/npcs/kid_1.tscn" id="5_o4npj"]
 [ext_resource type="PackedScene" uid="uid://cnboxyda30gxv" path="res://character/npcs/Alex.tscn" id="6_tyl4e"]
+[ext_resource type="PackedScene" uid="uid://cc8gsska5kek" path="res://character/npcs/default_npc_2.tscn" id="7_7ilfb"]
 [ext_resource type="PackedScene" uid="uid://ri483juss6q2" path="res://character/npcs/betty.tscn" id="7_rl7ip"]
 [ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="8_w3vh7"]
 
@@ -43,11 +45,19 @@ limit_smoothed = true
 [node name="TestGameManager" type="Node" parent="YSort/Player"]
 script = ExtResource("3_xe8eb")
 
+[node name="Kid1" parent="YSort" instance=ExtResource("5_o4npj")]
+position = Vector2(427, 156)
+
 [node name="Alex" parent="YSort" instance=ExtResource("6_tyl4e")]
-position = Vector2(470, 408)
+visible = false
+position = Vector2(1078, 473)
 
 [node name="Betty" parent="YSort" instance=ExtResource("7_rl7ip")]
-position = Vector2(648, 418)
+visible = false
+position = Vector2(1216, 470)
+
+[node name="DefaultNpc2" parent="YSort" instance=ExtResource("7_7ilfb")]
+position = Vector2(195, 278)
 
 [node name="House" type="Area2D" parent="."]
 script = ExtResource("3_tgcur")

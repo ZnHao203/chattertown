@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc8gsska5kek"]
+
+[ext_resource type="Script" path="res://character/npcs/DefaultNpc2.cs" id="1_n651a"]
+[ext_resource type="Texture2D" uid="uid://b8a0oxan3lykh" path="res://assets/characters/default.png" id="1_q3akd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gko1t"]
+size = Vector2(210, 261)
+
+[node name="DefaultNpc2" type="Node2D"]
+script = ExtResource("1_n651a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(213, 121)
+scale = Vector2(0.344668, 0.304604)
+texture = ExtResource("1_q3akd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(323, 125)
+scale = Vector2(0.364444, 0.303191)
+texture = ExtResource("1_q3akd")
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(268, 120.5)
+shape = SubResource("RectangleShape2D_gko1t")

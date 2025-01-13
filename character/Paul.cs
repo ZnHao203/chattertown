@@ -19,35 +19,57 @@ public partial class Paul : Character
 		_dialogueLines.Clear();
 
         _dialogueLines.Add(new DialogueLine(
-            "Hello there! I'm Paul, the town's baker.",
+            "Hi! Ya need help?",
             () => !GameManager.Instance.HasTalkedTo("Paul")
         )
-        .AddChoice("Hi Paul!", "", () => 
+        .AddChoice("Nah, just saying hi!", "", () => 
         {
-            GameManager.Instance.DisplayDialogue(CharacterName, "Nice weather today!");
+            GameManager.Instance.DisplayDialogue(CharacterName, "Sure, have a nice day!");
         })
-        .AddChoice("Tell me about your bakery!", "", () => 
+        .AddChoice("Well, tell me something about your bakery!", "", () => 
         {
             GameManager.Instance.DisplayDialogue(CharacterName, 
-                "I make the best bread in town! Would you like to try some?");
+                "So, typically, I start to prepare the dough from the one night before I make them into bread, I mix the dough, let it rise, shape it, and bake it fresh for thirty years like a day.");
 			GameManager.Instance.RecordCharacterInteraction("Paul");
         }));
 
         // Return visit dialogue
         _dialogueLines.Add(new DialogueLine(
-            "Welcome back! How can I help you today?",
-            () => GameManager.Instance.HasTalkedTo("Paul")
+            "You guys are not the first couple of people I met today… \n" + 
+            "I remember seeing Bill go up to the hills at the very middle of the night, perhaps just a few minutes past midnight. I mean it's dark as hell up there, why bother going up at that time?",
+            () => GameManager.Instance.HasTalkedTo("Paul") &&
+                !GameManager.Instance.HasTalkedTo("Paul1")
         )
-        .AddChoice("I'd like some bread.", "", () => 
+        .AddChoice("You sure that's Bill?", "", () => 
         {
             GameManager.Instance.DisplayDialogue(CharacterName, 
-                "Here's a fresh loaf, just out of the oven!");
-        })
-        .AddChoice("Just saying hello!", "", () => 
-        {
-            GameManager.Instance.DisplayDialogue(CharacterName, 
-                "Always nice to see a friendly face!");
+                "No, no one would.");
+            GameManager.Instance.RecordCharacterInteraction("Paul1");
         }));
+
+        _dialogueLines.Add(new DialogueLine(
+            "Yup, absolutely. That poor man waved an ultra-bright flashlight before climbing up. I was sitting beside my window enjoying a midnight snack before he interrupted my sweet snack… It must have been him. He was carrying a large hiking backpack, with what seemed like a camera hanging from it, looking just like a tourist. At the time, I even thought to myself, 'This outsider really has nothing better to do, climbing up the mountain in the middle of the night.'",
+            () => GameManager.Instance.HasTalkedTo("Paul1") &&
+                    !GameManager.Instance.HasTalkedTo("PaulDone")
+        )
+        .AddChoice("Hmm..", "", () => 
+        {
+            GameManager.Instance.DisplayDialogue(CharacterName, 
+                "Weird right? I double-checked my security camera after hearing his news… BUT NO ONE ELSE WENT UP THERE!");
+            GameManager.Instance.RecordCharacterInteraction("PaulDone");
+        }));
+
+
+        // Return visit dialogue
+		_dialogueLines.Add(new DialogueLine(
+			"Back again? Still investigating?",
+			() => GameManager.Instance.HasTalkedTo("PaulDone")
+		)
+		.AddChoice("Just say hi.", "", () => 
+		{
+			GameManager.Instance.DisplayDialogue(CharacterName, 
+				"Well, if you want to try some bread, you know where to find me.");
+		}));
 
 		// For debugging, let's print the number of dialogues and choices
         GD.Print($"Paul has {_dialogueLines.Count} dialogues");

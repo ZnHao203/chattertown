@@ -76,11 +76,11 @@ public partial class MeatChar : Character
 			{
 				switch (clue)
 				{
-					case "Paul":
+					case "PaulDone":
 						dialogueText += "- You have talked to Paul, Bravo!\n";
 						break;
-					case "Aileen":
-						dialogueText += "- You have talked to Aileen, Bravo!\n";
+					case "CameronDone":
+						dialogueText += "- You have talked to CameronDone, Bravo!\n";
 						break;
 					// Add more cases for other characters
 				}
