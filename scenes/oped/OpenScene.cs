@@ -15,7 +15,7 @@ public partial class OpenScene : Node
         StyleTextBox();
 
         // Set the EA message
-        messageLabel.Text = "Welcome to [Your Game's Name]!\n\n" +
+        messageLabel.Text = "Welcome to Chattertown!\n\n" +
 							"Nestled at the foot of a small hill lies the town you call home. Familiar yet full of mysteries, this quaint town invites you to explore its corners and converse with the locals.\n\n" +
 							"How to Play:\n" +
 							"- Use the left and right arrow keys to move around.\n" +
