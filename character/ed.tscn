@@ -1,19 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbhrb4ogqhs13"]
+[gd_scene load_steps=4 format=3 uid="uid://bbhrb4ogqhs13"]
 
 [ext_resource type="Texture2D" uid="uid://dxm3qe1p02nt4" path="res://assets/characters/Ed.png" id="1_la3y6"]
+[ext_resource type="Script" path="res://character/Ed.cs" id="1_opbp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8sl1"]
-size = Vector2(278, 238)
+size = Vector2(363, 296)
 
 [node name="Ed" type="Node2D"]
+script = ExtResource("1_opbp2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(58.5, -0.500015)
-scale = Vector2(0.250694, 0.247925)
+position = Vector2(104.182, 33.8883)
+scale = Vector2(0.333005, 0.32707)
 texture = ExtResource("1_la3y6")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(61, 0)
+position = Vector2(103.5, 29)
 shape = SubResource("RectangleShape2D_i8sl1")

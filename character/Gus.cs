@@ -50,23 +50,23 @@ public partial class Gus : Character
         .AddChoice("Why do you say he got what was coming to him?", "", () => 
         {
             GameManager.Instance.DisplayDialogue(CharacterName, 
-				"People with a little fame like him, always start to think they’re better than everyone else. Falling off a cliff? He had it coming.");
+				"People with a little fame like him, always start to think they're better than everyone else. Falling off a cliff? He had it coming.");
             GameManager.Instance.RecordCharacterInteraction("Gus21");
         })
 		.AddChoice("I never said you were the killer. Why are you reacting so strongly?", "", () => 
         {
             GameManager.Instance.DisplayDialogue(CharacterName, 
-				"If you don’t think I’m the killer, why are you asking me?! \n" + 
-				"I just got dragged in for questioning, and now everyone’s pointing fingers at me. Do you think I’m blind?! (throws a cup)");
+				"If you don't think I'm the killer, why are you asking me?! \n" + 
+				"I just got dragged in for questioning, and now everyone's pointing fingers at me. Do you think I'm blind?! (throws a cup)");
             GameManager.Instance.DisplayDialogue("Lady Quack", 
-				"That’s another cup you owe me for breaking.");
+				"That's another cup you owe me for breaking.");
 			
 			GameManager.Instance.RecordCharacterInteraction("Gus22");
         })
 		.AddChoice("Can you tell me about the other person who was called to the police station with you?", "", () => 
         {
             GameManager.Instance.DisplayDialogue(CharacterName, 
-				"That guy is a weirdo, totally out of it. He seems to be the first one who noticed the photographer was missing. If anyone's suspicious, it’s definitely him!");
+				"That guy is a weirdo, totally out of it. He seems to be the first one who noticed the photographer was missing. If anyone's suspicious, it's definitely him!");
             GameManager.Instance.RecordCharacterInteraction("Gus23");
         })
 		);
@@ -81,7 +81,7 @@ public partial class Gus : Character
 			GameManager.Instance.RecordCharacterInteraction("Gus2211");
 
 			_dialogueLines.Add(new DialogueLine(
-				"What relationship? I don’t know him! I just saw him hogging the photo spot for too long and went over to tell him off. Other tourists should be thanking me!",
+				"What relationship? I don't know him! I just saw him hogging the photo spot for too long and went over to tell him off. Other tourists should be thanking me!",
 				() => GameManager.Instance.HasTalkedTo("Gus2211") &&
 					!GameManager.Instance.HasTalkedTo("Gus2212")
 			) 
@@ -90,7 +90,7 @@ public partial class Gus : Character
 				GameManager.Instance.RecordCharacterInteraction("Gus2212");
 
 				_dialogueLines.Add(new DialogueLine(
-					"...Okay, I pushed him a bit, but it was just a moment of anger during the day. He just fell to the ground, maybe scraped his skin. Don’t tell me that push caused him to fall off the cliff at night.",
+					"...Okay, I pushed him a bit, but it was just a moment of anger during the day. He just fell to the ground, maybe scraped his skin. Don't tell me that push caused him to fall off the cliff at night.",
 					() => GameManager.Instance.HasTalkedTo("Gus2212") &&
 						!GameManager.Instance.HasTalkedTo("Gus2213")
 				) 
@@ -126,7 +126,7 @@ public partial class Gus : Character
 		.AddChoice("Do you know this guy?", "", () => 
 		{
 			GameManager.Instance.DisplayDialogue(CharacterName, 
-				"No idea. I only found out today his name is Ed... He didn’t really stand out in the tour group. I don’t know how he got involved in this.");
+				"No idea. I only found out today his name is Ed... He didn't really stand out in the tour group. I don't know how he got involved in this.");
 			GameManager.Instance.RecordCharacterInteraction("Gus233");
 		})
 		);
@@ -150,9 +150,9 @@ public partial class Gus : Character
 				() => GameManager.Instance.HasTalkedTo("Gus31") &&
 						!GameManager.Instance.HasTalkedTo("Gus32")
 			)
-			.AddChoice("...I didn’t offend you earlier... right?", "", () =>
+			.AddChoice("...I didn't offend you earlier... right?", "", () =>
 			{
-				GameManager.Instance.DisplayDialogue(CharacterName, "Ha, scared now? You’ve already wasted enough of my time. Get lost!");
+				GameManager.Instance.DisplayDialogue(CharacterName, "Ha, scared now? You've already wasted enough of my time. Get lost!");
 				GameManager.Instance.RecordCharacterInteraction("Gus32");
 			}));
             

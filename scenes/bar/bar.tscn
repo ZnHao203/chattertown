@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm2f4016c7oy4"]
+[gd_scene load_steps=10 format=3 uid="uid://cm2f4016c7oy4"]
 
 [ext_resource type="Texture2D" uid="uid://cmmk5ktxrrtag" path="res://assets/scenes/bar.png" id="1_cj2a5"]
+[ext_resource type="Script" path="res://scenes/bar/Bar.cs" id="1_omhqm"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_g3g7p"]
 [ext_resource type="Script" path="res://scenes/bar/BarDoor.cs" id="3_a1iad"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="3_p7v2n"]
@@ -12,6 +13,7 @@
 size = Vector2(185, 647)
 
 [node name="bar" type="Node"]
+script = ExtResource("1_omhqm")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(1479.5, 343)
