@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://d36po1eevt70l"]
+[gd_scene load_steps=9 format=3 uid="uid://d36po1eevt70l"]
 
 [ext_resource type="Texture2D" uid="uid://c2e5pt1tksfwe" path="res://assets/scenes/hotel.png" id="1_t22yi"]
+[ext_resource type="Script" path="res://scenes/hotel/Hotel.cs" id="1_twg7a"]
 [ext_resource type="PackedScene" uid="uid://du4qdta0hfbxr" path="res://character/player.tscn" id="2_i4m7m"]
 [ext_resource type="Script" path="res://scenes/hotel/HotelDoor.cs" id="3_wfrfy"]
 [ext_resource type="PackedScene" uid="uid://6lll2gnui3iu" path="res://ui/timeEnergy.tscn" id="4_s4rlx"]
 [ext_resource type="PackedScene" uid="uid://b88okpjgjjqcb" path="res://scenes/background/background.tscn" id="5_hhibc"]
+[ext_resource type="PackedScene" uid="uid://bbhrb4ogqhs13" path="res://character/ed.tscn" id="6_f577p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvywd"]
 size = Vector2(235, 638)
 
 [node name="hotel" type="Node"]
+script = ExtResource("1_twg7a")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(1106, 326.5)
@@ -18,6 +21,9 @@ texture = ExtResource("1_t22yi")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Ed" parent="YSort" instance=ExtResource("6_f577p")]
+position = Vector2(1575, 466)
 
 [node name="Player" parent="YSort" instance=ExtResource("2_i4m7m")]
 position = Vector2(107, 504)

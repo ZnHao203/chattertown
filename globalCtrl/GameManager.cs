@@ -49,7 +49,8 @@ public partial class GameManager : Node
 			GD.Print("ChatBox found successfully");
 		}
 		GD.Print("GameManager Ready"); // Debug print
-		StartNewDay();
+		// StartNewDay();
+        GetTree().ChangeSceneToFile("res://scenes/oped/open_scene.tscn");
 	}
 	
 	public void DisplayDialogue(string speaker, string message)
@@ -149,15 +150,18 @@ public partial class GameManager : Node
 
     private Dictionary<string, bool> previousDayClues = new Dictionary<string, bool> {
 			{ "Paul", false },
-			{ "Aileen", false }
+			{ "Aileen", false },
+            { "Cameron", false },
+			{ "Ed", false },
+            { "Gus", false }
 	};
-	private List<string> charactersToTrack = new List<string> { "Paul", "Aileen" }; // Add more as needed
+	private List<string> charactersToTrack = new List<string> { "Paul", "Aileen", "Cameron", "Ed", "Gus" }; // Add more as needed
 
 	public void InitializePreviousClues()
 	{
 		foreach (var character in charactersToTrack)
 		{
-			previousDayClues[character] = HasTalkedTo(character);
+			previousDayClues[character] = HasTalkedTo(character + "Done");
 		}
         GD.Print($"Previous day clues: {string.Join(", ", previousDayClues)}");
 	}
@@ -167,7 +171,7 @@ public partial class GameManager : Node
 		
 		foreach (var character in charactersToTrack)
 		{
-			bool talkedToToday = HasTalkedTo(character);
+			bool talkedToToday = HasTalkedTo(character + "Done");
 			bool talkedToPreviously = previousDayClues[character];
 			GD.Print($"Checking {character}: {talkedToToday} vs {talkedToPreviously}");
 			if (!talkedToPreviously && talkedToToday)
@@ -189,7 +193,7 @@ public partial class GameManager : Node
             // Switch to the end scene
             ChatBox.Instance.ToggleVisibility();
             GD.Print("Changed scene to new file.");
-            GetTree().ChangeSceneToFile("res://scenes/end/end_scene.tscn");
+            GetTree().ChangeSceneToFile("res://scenes/oped/end_scene.tscn");
             return;
         }
 

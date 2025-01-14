@@ -76,13 +76,26 @@ public partial class MeatChar : Character
 			{
 				switch (clue)
 				{
-					case "PaulDone":
-						dialogueText += "- You have talked to Paul, Bravo!\n";
+					case "Paul":
+						dialogueText += "- Paul saw Bill heading up the hills around midnight, carrying a flashlight and a large backpack. \n";
+						dialogueText += "He confirmed with his security footage that Bill was the only one who went up there.\n";
 						break;
-					case "CameronDone":
-						dialogueText += "- You have talked to CameronDone, Bravo!\n";
+					case "Cameron":
+						dialogueText += "- Cameron said the deceased photographer visited his shop twice: once to develop photos and again to buy film. \n";
+						dialogueText += "He described the photographer as rushed and secretive during his visits.\n";
+						break;
+					case "Ed":
+						dialogueText += "- Ed seemed really on edge today, accusing you of murder and then denying he knew anything crucial after Bill's death. \n";
+						dialogueText += "He was all over the place, from calling you an assassin to thinking you're just a delivery guy. Pretty tense exchange!\n";
+						break;
+					case "Gus":
+						dialogueText += "- Gus was pretty defensive when talking about Bill today. He claimed he didn't know much about Bill, yet admitted to a confrontation where he pushed him. \n";
+						dialogueText += "He's very touchy about the topic, hinting that Bill deserved what happened to him without saying much else. Gus insisted that he had nothing to do with the fatal incident, reinforcing his alibi that he was at the hotel all night.\n";
 						break;
 					// Add more cases for other characters
+					default:
+						dialogueText = $"You've talked to {clue} today. Bravo!\n";	
+						break;
 				}
 			}
 		}
